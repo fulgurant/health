@@ -18,7 +18,9 @@ type Health struct {
 }
 
 func New(logger *zap.Logger) *Health {
-	logger = logger.With(zap.String("module", "health"))
+	if logger != nil {
+		logger = logger.With(zap.String("module", "health"))
+	}
 
 	h := &Health{
 		systems: sync.Map{},
